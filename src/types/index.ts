@@ -46,3 +46,6 @@ export type INavLink = {
     username: string;
     password: string;
   };
+
+  // copy and past this code so we can create new users ... 
+  // use it in the api 

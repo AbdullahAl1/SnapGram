@@ -23,9 +23,7 @@ export async function createUserAccount(user: INewUser) {
     });
 
     return newUser;
-  } 
-  
-  catch (error) {
+  } catch (error) {
     console.log(error);
     return error;
   }
@@ -40,12 +38,22 @@ export async function saveUserToDB(user: {
 }) {
   try {
     const newUser = await databases.createDocument(
-        appwriteConfig.databaseId,
-        appwriteConfig.userCollectionId,
-        ID.unique(),
-        user,
+      appwriteConfig.databaseId,
+      appwriteConfig.userCollectionId,
+      ID.unique(),
+      user
     );
-    return newUser
+    return newUser;
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+export async function signInAccount(user: { email: string; password: string }) {
+  try {                        // createEmailSession
+    const session = await account.createSession(user.email, user.password);
+
+    return session;
   } catch (error) {
     console.log(error);
   }
